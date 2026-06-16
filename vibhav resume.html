@@ -1,0 +1,1665 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibhav Kumar - Resume</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --accent: #00ffcc;
+            --accent-glow: rgba(0, 255, 204, 0.3);
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Abstract Background Pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, var(--accent-glow) 0%, transparent 20%);
+            z-index: -1;
+            opacity: 0.5;
+            animation: pulseBg 10s infinite alternate;
+        }
+
+        @keyframes pulseBg {
+            0% {
+                transform: scale(1);
+                opacity: 0.3;
+            }
+
+            100% {
+                transform: scale(1.2);
+                opacity: 0.6;
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+        }
+
+        /* Header Styles */
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+            animation: slideDown 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+        }
+
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #fff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .contact-info span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-info a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: var(--accent);
+            text-shadow: 0 0 8px var(--accent-glow);
+        }
+
+        /* Layout */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 900px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Section Styles */
+        section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            color: #fff;
+            border-bottom: 2px solid var(--card-border);
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
+            transition: height 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 2px;
+        }
+
+        section.grow-active .section-title::after {
+            width: 100%;
+            box-shadow: 0 0 8px var(--accent-glow), 0 0 3px var(--accent);
+            transition: width 1.5s cubic-bezier(0.25, 0.8, 0.25, 1), height 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Screen shake animation keyframes - Breaking/Cracking Screen Effect */
+        @keyframes screen-breaking-shake {
+            0%, 100% {
+                transform: translate(0, 0) scale(1) rotate(0deg);
+            }
+            25% {
+                transform: translate(-3px, -1.5px) scale(1.002) rotate(-0.2deg);
+            }
+            50% {
+                transform: translate(2px, 1.5px) scale(0.998) rotate(0.2deg);
+            }
+            75% {
+                transform: translate(-2px, 2px) scale(1.001) rotate(-0.1deg);
+            }
+        }
+
+        body.shake-active {
+            animation: screen-breaking-shake 0.8s infinite ease-in-out;
+        }
+
+        /* Section title fill up effect */
+        section.fill-active .section-title::after {
+            height: 8px;
+            box-shadow: 0 0 25px var(--accent), 0 0 10px var(--accent);
+        }
+
+        /* Full screen overlay for the 'fill up' visual effect */
+        .fill-overlay {
+            position: fixed;
+            top: -20px;
+            left: -20px;
+            width: calc(100% + 40px);
+            height: calc(100% + 40px);
+            background-color: var(--accent);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        body.shake-active .fill-overlay {
+            opacity: 0.12;
+        }
+
+        /* Card Styles */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px var(--accent-glow);
+            border-color: rgba(0, 255, 204, 0.5);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .card-title-group {
+            display: flex;
+            flex-direction: column-reverse;
+        }
+
+        .card-meta-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .location {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.2rem;
+            transition: color 0.4s ease;
+        }
+
+        .job-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .company-name {
+            font-size: 1.1rem;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .duration {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+        }
+
+        /* Lists */
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+            color: var(--text-main);
+        }
+
+        ul li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--accent);
+        }
+
+        /* Tags for skills */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .skill-tag {
+            background: rgba(0, 255, 204, 0.1);
+            color: var(--accent);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(0, 255, 204, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: var(--accent);
+            color: var(--bg-color);
+            transform: scale(1.05);
+        }
+
+        /* Scroll Animation Classes */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cite-badge {
+            font-size: 0.7em;
+            vertical-align: super;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Horizontal Scroll Container */
+        .cards-scroll-container {
+            display: flex;
+            overflow-x: auto;
+            gap: 1.5rem;
+            padding: 0.5rem 0.25rem 1.5rem 0.25rem;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent) rgba(255, 255, 255, 0.05);
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .cards-scroll-container::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .cards-scroll-container::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 4px;
+        }
+
+        .cards-scroll-container::-webkit-scrollbar-thumb {
+            background-color: var(--accent);
+            border-radius: 4px;
+        }
+
+        .cards-scroll-container .card {
+            flex: 0 0 calc(50% - 0.75rem);
+            min-width: 280px;
+            scroll-snap-align: start;
+            margin-bottom: 0;
+            box-sizing: border-box;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.4s ease, color 0.4s ease;
+        }
+
+        @media (max-width: 768px) {
+            .cards-scroll-container .card {
+                flex: 0 0 calc(100% - 0.5rem);
+            }
+        }
+
+        /* Basketball Tag Hover Animation, Texture & Glow */
+        .basketball-tag {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: visible;
+        }
+
+        .basketball-tag::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 50%;
+            width: 16px;
+            height: 16px;
+            background-color: #ee6723;
+            border-radius: 50%;
+            border: 1px solid #3d1b06;
+            transform: translateY(-50%) scale(0);
+            opacity: 0;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+            box-shadow: inset 1px 1px 2px rgba(255,255,255,0.4), inset -1px -1px 2px rgba(0,0,0,0.4);
+            background-image: 
+                radial-gradient(circle at 50% 50%, transparent 60%, #3d1b06 60%, #3d1b06 68%, transparent 68%),
+                linear-gradient(90deg, transparent 46%, #3d1b06 46%, #3d1b06 54%, transparent 54%),
+                linear-gradient(0deg, transparent 46%, #3d1b06 46%, #3d1b06 54%, transparent 54%);
+            background-size: 100% 100%;
+        }
+
+        .basketball-tag:hover {
+            background-color: #ee6723 !important;
+            background-image: 
+                radial-gradient(rgba(0, 0, 0, 0.15) 15%, transparent 20%),
+                radial-gradient(rgba(0, 0, 0, 0.15) 15%, transparent 20%) !important;
+            background-size: 6px 6px !important;
+            background-position: 0 0, 3px 3px !important;
+            color: #fff !important;
+            border-color: #3b1404 !important;
+            box-shadow: 0 0 15px rgba(238, 103, 35, 0.7), inset 0 0 8px rgba(0, 0, 0, 0.3) !important;
+            padding-left: 2rem !important;
+            transform: scale(1.1) translateY(-3px);
+        }
+
+        .basketball-tag:hover::before {
+            transform: translateY(-50%) scale(1);
+            opacity: 1;
+            left: 8px;
+            animation: dribble-ball 0.6s infinite alternate ease-in-out;
+        }
+
+        body:has(.basketball-tag:hover) {
+            animation: basketball-screen-shake 1.2s infinite ease-in-out;
+        }
+
+        @keyframes dribble-ball {
+            0% {
+                transform: translateY(-110%) scaleY(0.9);
+            }
+            100% {
+                transform: translateY(-10%) scaleY(1.05);
+            }
+        }
+
+        @keyframes basketball-screen-shake {
+            0%, 100% {
+                transform: translateY(-4px); /* Pushes up when ball hits top */
+            }
+            25%, 75% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(4px); /* Pushes down when ball hits bottom */
+            }
+        }
+
+        /* Education Styles with Logos - Stacked Details Layout */
+        .edu-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .edu-logo {
+            width: 52px;
+            height: 52px;
+            object-fit: contain;
+            background: #ffffff;
+            padding: 5px;
+            border-radius: 10px;
+            border: 1px solid var(--card-border);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            flex-shrink: 0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .edu-logo:hover {
+            transform: scale(1.1) rotate(3deg);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4), 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .edu-details {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+            flex-grow: 1;
+        }
+
+        .edu-details .job-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #fff;
+            line-height: 1.2;
+        }
+
+        .edu-details .company-name {
+            font-size: 1.05rem;
+            color: var(--accent);
+            font-weight: 500;
+            line-height: 1.2;
+        }
+
+        .edu-details .duration {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            align-self: flex-start;
+            margin-top: 0.3rem;
+            display: inline-block;
+        }
+
+        /* Smooth page transition for Theme Switch */
+        body {
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        .card, .skill-tag, h1, .section-title, a, .contact-info a {
+            transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease, text-shadow 0.4s ease;
+        }
+
+        /* Floating Theme Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--card-border);
+            padding: 0.75rem;
+            border-radius: 50%;
+            cursor: pointer;
+            backdrop-filter: blur(12px);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 46px;
+            height: 46px;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1) rotate(15deg);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        .theme-toggle svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--accent);
+            transition: fill 0.3s ease;
+        }
+
+        /* Dynamic Light Mode overrides referencing CSS variables */
+        body.light-mode {
+            --bg-color: #f3f4f6;
+            --text-main: #1f2937;
+            --text-muted: #4b5563;
+            --accent: #d97706;
+            --accent-glow: rgba(217, 119, 6, 0.25);
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --card-border: rgba(17, 24, 39, 0.08);
+        }
+
+        body.light-mode h1 {
+            background: linear-gradient(90deg, #111827, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        body.light-mode .section-title {
+            color: #111827;
+            border-bottom-color: rgba(17, 24, 39, 0.1);
+        }
+
+        body.light-mode .card {
+            background: var(--card-bg);
+            border-color: var(--card-border);
+            color: var(--text-main);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+        }
+
+        body.light-mode .card:hover {
+            box-shadow: 0 10px 30px var(--accent-glow), 0 0 10px var(--accent-glow);
+            border-color: var(--accent);
+        }
+
+        body.light-mode .edu-details .job-title, 
+        body.light-mode .job-title {
+            color: #111827;
+        }
+
+        body.light-mode .edu-details .company-name,
+        body.light-mode .company-name {
+            color: var(--accent);
+        }
+
+        body.light-mode .edu-details .duration,
+        body.light-mode .duration {
+            color: var(--text-muted);
+            background: rgba(17, 24, 39, 0.05);
+        }
+
+        body.light-mode ul li {
+            color: var(--text-main);
+        }
+
+        body.light-mode .skill-tag {
+            background: rgba(0, 0, 0, 0.03);
+            color: var(--accent);
+            border-color: rgba(0, 0, 0, 0.08);
+        }
+
+        body.light-mode .skill-tag:hover {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
+
+        body.light-mode .contact-info a {
+            color: var(--text-muted);
+        }
+
+        body.light-mode .contact-info a:hover {
+            color: var(--accent);
+            text-shadow: none;
+        }
+
+        body.light-mode .edu-logo {
+            border-color: rgba(17, 24, 39, 0.1);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        body.light-mode .theme-toggle {
+            background: rgba(0, 0, 0, 0.04);
+            border-color: rgba(17, 24, 39, 0.12);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        body.light-mode .theme-toggle:hover {
+            background: rgba(0, 0, 0, 0.08);
+            border-color: var(--accent);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        body.light-mode .theme-toggle svg {
+            fill: var(--accent);
+        }
+
+        /* PROFILE 1: AI Product Management Theme Override (Teal/Mint Theme) */
+        body.profile-pm {
+            --bg-color: #0b0f19;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --accent: #00ffcc;
+            --accent-glow: rgba(0, 255, 204, 0.3);
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+        }
+
+        body.profile-pm.light-mode {
+            --bg-color: #f0fdfa;
+            --text-main: #111827;
+            --text-muted: #4b5563;
+            --accent: #0f766e;
+            --accent-glow: rgba(15, 118, 110, 0.25);
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --card-border: rgba(17, 24, 39, 0.08);
+        }
+
+        /* PROFILE 2: Enterprise Product Marketing Theme Override (Purple/Violet Theme) */
+        body.profile-marketing {
+            --bg-color: #0c081e;
+            --text-main: #f1f5f9;
+            --text-muted: #a7b5ca;
+            --accent: #b892ff;
+            --accent-glow: rgba(184, 146, 255, 0.3);
+            --card-bg: rgba(255, 255, 255, 0.02);
+            --card-border: rgba(255, 255, 255, 0.07);
+        }
+
+        body.profile-marketing.light-mode {
+            --bg-color: #faf5ff;
+            --text-main: #1e1b4b;
+            --text-muted: #57534e;
+            --accent: #6d28d9;
+            --accent-glow: rgba(109, 40, 217, 0.25);
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --card-border: rgba(17, 24, 39, 0.08);
+        }
+
+        /* PROFILE 3: Business & Strategy Theme Override (Amber/Gold Theme) */
+        body.profile-strategy {
+            --bg-color: #0f0e0a;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #fbbf24;
+            --accent-glow: rgba(251, 191, 36, 0.3);
+            --card-bg: rgba(255, 255, 255, 0.02);
+            --card-border: rgba(255, 255, 255, 0.06);
+        }
+
+        body.profile-strategy.light-mode {
+            --bg-color: #fffbef;
+            --text-main: #1c1917;
+            --text-muted: #57524e;
+            --accent: #b45309;
+            --accent-glow: rgba(180, 83, 9, 0.25);
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --card-border: rgba(17, 24, 39, 0.08);
+        }
+
+        /* Profile visibility selectors using data-profiles */
+        body.profile-pm [data-profiles]:not([data-profiles~="pm"]) {
+            display: none !important;
+        }
+        body.profile-marketing [data-profiles]:not([data-profiles~="marketing"]) {
+            display: none !important;
+        }
+        body.profile-strategy [data-profiles]:not([data-profiles~="strategy"]) {
+            display: none !important;
+        }
+
+        /* Profile toggle switcher tab bar */
+        .profile-toggle-container {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 2rem auto;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--card-border);
+            padding: 0.35rem;
+            border-radius: 30px;
+            max-width: fit-content;
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 99;
+            transition: border-color 0.4s ease;
+        }
+
+        .profile-tab {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 0.6rem 1.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Space Grotesk', sans-serif;
+            white-space: nowrap;
+        }
+
+        .profile-tab:hover {
+            color: var(--text-main);
+        }
+
+        .profile-tab.active {
+            background: var(--accent);
+            color: var(--bg-color);
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+
+        /* Download Hover Dropdown (Tucked next to Theme Toggle) */
+        .download-dropdown {
+            position: fixed;
+            top: 2rem;
+            right: 6rem;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--card-border);
+            border-radius: 23px;
+            cursor: pointer;
+            backdrop-filter: blur(12px);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            width: 46px;
+            height: 46px;
+            overflow: hidden;
+            padding: 0;
+        }
+
+        .download-trigger {
+            background: transparent;
+            border: none;
+            width: 46px;
+            height: 46px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .download-trigger svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--accent);
+            transition: fill 0.3s ease, transform 0.3s ease;
+        }
+
+        .download-options {
+            display: flex;
+            gap: 0.5rem;
+            padding-right: 1.25rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .opt-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            padding: 0.4rem 0.8rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .opt-btn:hover {
+            background: var(--accent);
+            color: var(--bg-color);
+            border-color: var(--accent);
+        }
+
+        /* Hover Expansion */
+        .download-dropdown:hover {
+            width: auto;
+            max-width: 500px;
+            padding-right: 0.5rem;
+            border-color: var(--accent);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        .download-dropdown:hover .download-options {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .download-dropdown:hover .download-trigger svg {
+            transform: scale(1.1) rotate(-90deg);
+        }
+
+        /* Strictly 1-Page Harvard Style PDF/Print Styling */
+        @media print {
+            /* Set print page size and margin */
+            @page {
+                size: letter portrait;
+                margin: 0.35in 0.4in;
+            }
+
+            /* Disable animations/transitions */
+            *, *::before, *::after {
+                transition: none !important;
+                animation: none !important;
+            }
+
+            /* Floating buttons, switcher, theme elements must be hidden */
+            .theme-toggle,
+            .profile-toggle-container,
+            .download-dropdown,
+            .fill-overlay,
+            .edu-logo,
+            .no-print {
+                display: none !important;
+            }
+
+            /* Harvard style print colors and typography */
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+                font-family: 'Georgia', 'Times New Roman', Times, serif !important;
+                font-size: 8.5pt !important;
+                line-height: 1.25 !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+
+            .container {
+                max-width: 100% !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+
+            header {
+                text-align: center !important;
+                margin-bottom: 8pt !important;
+            }
+
+            h1 {
+                font-size: 16pt !important;
+                font-weight: bold !important;
+                margin-bottom: 2pt !important;
+                text-transform: uppercase !important;
+                background: none !important;
+                -webkit-text-fill-color: initial !important;
+                color: #000000 !important;
+                letter-spacing: 0.5px !important;
+            }
+
+            .subtitle {
+                font-size: 9pt !important;
+                font-weight: bold !important;
+                margin-bottom: 4pt !important;
+                text-transform: uppercase !important;
+                color: #000000 !important;
+                letter-spacing: 1px !important;
+            }
+
+            .contact-info {
+                display: flex !important;
+                justify-content: center !important;
+                gap: 12pt !important;
+                flex-wrap: wrap !important;
+                font-size: 8pt !important;
+                color: #000000 !important;
+                margin-bottom: 2pt !important;
+                border-bottom: 1px solid #000000 !important;
+                padding-bottom: 4pt !important;
+            }
+
+            .contact-info a {
+                color: #000000 !important;
+                text-decoration: none !important;
+            }
+
+            /* Single column layout */
+            .main-grid {
+                display: block !important;
+            }
+
+            .column-main, .column-sidebar {
+                width: 100% !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+
+            section {
+                margin-bottom: 8pt !important;
+                page-break-inside: avoid;
+            }
+
+            .section-title {
+                font-size: 9.5pt !important;
+                font-weight: bold !important;
+                text-transform: uppercase !important;
+                border-bottom: 1px solid #000000 !important;
+                padding-bottom: 1pt !important;
+                margin-bottom: 4pt !important;
+                color: #000000 !important;
+                letter-spacing: 0.5px !important;
+            }
+
+            .section-title::after {
+                display: none !important;
+            }
+
+            /* Card resets */
+            .card {
+                background: transparent !important;
+                border: none !important;
+                border-radius: 0 !important;
+                padding: 0 !important;
+                margin-bottom: 4pt !important;
+                box-shadow: none !important;
+                backdrop-filter: none !important;
+            }
+
+            .card-header {
+                display: grid !important;
+                grid-template-columns: 1fr auto !important;
+                width: 100% !important;
+                margin-bottom: 1pt !important;
+            }
+
+            .card-title-group,
+            .card-meta-group {
+                display: contents !important;
+            }
+
+            .company-name {
+                grid-row: 1 !important;
+                grid-column: 1 !important;
+                font-weight: bold !important;
+                font-size: 8.5pt !important;
+                color: #000000 !important;
+                font-style: normal !important;
+            }
+
+            .location {
+                grid-row: 1 !important;
+                grid-column: 2 !important;
+                text-align: right !important;
+                font-size: 8.5pt !important;
+                color: #000000 !important;
+                font-weight: normal !important;
+                font-style: normal !important;
+            }
+
+            .job-title {
+                grid-row: 2 !important;
+                grid-column: 1 !important;
+                font-weight: bold !important;
+                font-size: 8.5pt !important;
+                color: #000000 !important;
+                font-style: normal !important;
+            }
+
+            .duration {
+                grid-row: 2 !important;
+                grid-column: 2 !important;
+                text-align: right !important;
+                font-size: 8.5pt !important;
+                color: #000000 !important;
+                font-style: normal !important;
+                background: none !important;
+                padding: 0 !important;
+            }
+
+            /* Compact bulleted lists */
+            ul {
+                list-style: disc !important;
+                padding-left: 12pt !important;
+                margin-top: 1pt !important;
+            }
+
+            ul li {
+                padding-left: 0 !important;
+                margin-bottom: 1.5pt !important;
+                font-size: 8.2pt !important;
+                color: #000000 !important;
+                line-height: 1.2 !important;
+            }
+
+            ul li::before {
+                display: none !important;
+            }
+
+            /* Hide specific bullet lists on print to fit 1 page */
+            .edu-header + ul,
+            .cards-scroll-container .card:not(:first-child) ul {
+                display: none !important;
+            }
+
+            /* Skills list layout separated by commas */
+            .skills-container {
+                display: block !important;
+                margin-bottom: 2pt !important;
+            }
+
+            .skill-tag {
+                display: inline !important;
+                background: transparent !important;
+                border: none !important;
+                color: #000000 !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                font-size: 8pt !important;
+                border-radius: 0 !important;
+            }
+
+            .skill-tag::after {
+                content: ", " !important;
+            }
+
+            .skill-tag:last-child::after {
+                content: "" !important;
+            }
+
+            /* Education Harvard Style Layout */
+            .edu-header {
+                display: block !important;
+                margin-bottom: 1pt !important;
+            }
+
+            .edu-details {
+                display: grid !important;
+                grid-template-columns: 1fr auto !important;
+                width: 100% !important;
+                align-items: baseline !important;
+            }
+
+            .edu-details .company-name {
+                grid-row: 1 !important;
+                grid-column: 1 !important;
+                font-weight: bold !important;
+                font-size: 8.5pt !important;
+                color: #000000 !important;
+                font-style: normal !important;
+            }
+
+            .edu-details .location {
+                grid-row: 1 !important;
+                grid-column: 2 !important;
+                text-align: right !important;
+                font-size: 8.5pt !important;
+                color: #000000 !important;
+                font-style: normal !important;
+                font-weight: normal !important;
+            }
+
+            .edu-details .job-title {
+                grid-row: 2 !important;
+                grid-column: 1 !important;
+                font-weight: normal !important;
+                font-style: italic !important;
+                font-size: 8.2pt !important;
+                color: #000000 !important;
+            }
+
+            .edu-details .duration {
+                grid-row: 2 !important;
+                grid-column: 2 !important;
+                text-align: right !important;
+                font-weight: normal !important;
+                color: #000000 !important;
+                font-style: italic !important;
+                font-size: 8.2pt !important;
+            }
+
+            /* Internships/Leadership cards collapse for print layout */
+            .cards-scroll-container {
+                display: block !important;
+                overflow: visible !important;
+                padding: 0 !important;
+            }
+
+            .cards-scroll-container .card {
+                display: block !important;
+                width: 100% !important;
+                margin-bottom: 4pt !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- PDF Download Hover Dropdown (Tucked next to Theme Toggle) -->
+    <div class="download-dropdown">
+        <button class="download-trigger" aria-label="Download options">
+            <svg viewBox="0 0 24 24"><path d="M19 12v7H5v-7H3v7c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zm-6 .67l2.59-2.58L17 11.5l-5 5-5-5 1.41-1.41L11 12.67V3h2v9.67z"/></svg>
+        </button>
+        <div class="download-options">
+            <button class="opt-btn" onclick="downloadPDF('pm')">AI PM Resume</button>
+            <button class="opt-btn" onclick="downloadPDF('marketing')">Product Marketing</button>
+            <button class="opt-btn" onclick="downloadPDF('strategy')">Business Strategy</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- HEADER -->
+        <header>
+            <h1>VIBHAV KUMAR</h1>
+            <div class="subtitle" data-profiles="pm">AI PRODUCT MANAGEMENT</div>
+            <div class="subtitle" data-profiles="marketing">ENTERPRISE PRODUCT MARKETING MANAGER</div>
+            <div class="subtitle" data-profiles="strategy">BUSINESS STRATEGY FOR ENTERPRISE AI</div>
+            <div class="contact-info">
+                <span><span class="emoji no-print">📧</span> <a href="mailto:vibhavk2024@email.iimcal.ac.in">vibhavk2024@email.iimcal.ac.in</a></span>
+                <span><span class="emoji no-print">📱</span> <a href="tel:8004885992">8004885992</a></span>
+                <span><span class="emoji no-print">🔗</span> <a href="https://linkedin.com/in/vibhavkarnwal" target="_blank" rel="noopener noreferrer">linkedin.com/in/vibhavkarnwal</a></span>
+                <span><span class="emoji no-print">🐙</span> <a href="https://github.com/vibhav07" target="_blank" rel="noopener noreferrer">github.com/vibhav07</a></span>
+            </div>
+
+            <!-- Profile Switcher Tabs -->
+            <div class="profile-toggle-container">
+                <button class="profile-tab active" data-profile="pm" onclick="setProfile('pm')">AI Product Management</button>
+                <button class="profile-tab" data-profile="marketing" onclick="setProfile('marketing')">Product Marketing</button>
+                <button class="profile-tab" data-profile="strategy" onclick="setProfile('strategy')">Business Strategy</button>
+            </div>
+        </header>
+
+        <div class="main-grid">
+            <!-- LEFT COLUMN: Experience & Strategic Ops -->
+            <div class="column-main">
+
+                <section>
+                    <h2 class="section-title">EXPERIENCE</h2>
+
+                    <div class="card fade-up">
+                        <div class="card-header">
+                            <div class="card-title-group">
+                                <div class="company-name">Coforge</div>
+                                <div class="job-title">Manager, Engineering (Product)</div>
+                            </div>
+                            <div class="card-meta-group">
+                                <div class="location">Noida, India</div>
+                                <div class="duration">Jun 24 - Present</div>
+                            </div>
+                        </div>
+                        <ul>
+                            <!-- AI PM Bullets -->
+                            <li data-profiles="pm">Owned the 0-to-1 product lifecycle for the CodeInsightAI accelerator, leading an 8-person team to define the MVP, build the roadmap, and secure leadership buy-in in 4 months.</li>
+                            <li data-profiles="pm strategy">Serve as the Product Business Owner for Forge-X (flagship Agentic AI platform), managing a 15-member development team and prioritizing a 100+ item product backlog.</li>
+                            <li data-profiles="pm">Designed the agentic orchestration system for Forge-X to coordinate specialized AI agents (Product Owners, Architects, QAs) using MCP, reducing manual software engineering overhead by ~40%.</li>
+                            <li data-profiles="pm">Translate complex technical concepts (MCP-driven architecture, A2A protocols, LightRAG) into a clear product vision and actionable user stories for the Forge-X team.</li>
+                            <li data-profiles="pm marketing">Directed the complete GTM and launch for CodeInsightAI, creating the product launch video and personally conducting 15+ live technical demos for C-level customer executives.</li>
+                            
+                            <!-- Marketing Bullets -->
+                            <li data-profiles="marketing">Serve as the Product Marketing lead for Forge-X, positioning its multi-agent orchestration capabilities and specialized modules (CodeInsightAI, BlueSwan, EvolveOps.AI) to secure $10M+ in pipeline within the first 6 months.</li>
+                            <li data-profiles="marketing strategy">Co-led technical product discovery and demonstrations in 5+ strategic (>$100M TCV) sales pursuits with global clients.</li>
+                            <li data-profiles="marketing strategy">Authored 20+ Sales enablement assets (pitch decks, demos) to productize 5+ core engineering services offerings.</li>
+                            <li data-profiles="marketing strategy">Managed multiple critical analyst RFI responses for Forrester and ISG, securing a "SPOT Award" for successfully positioning Forge-X platform capabilities in key market reports.</li>
+
+                            <!-- Strategy Bullets -->
+                            <li data-profiles="strategy">Formulated the business strategy and value realization framework for Forge-X, establishing ROI metrics for enterprise customers that demonstrated a 35% reduction in application modernization costs.</li>
+                            <li data-profiles="strategy">Partnered with executive leadership to pitch Forge-X as a vendor-neutral AI backbone in 5+ strategic sales pursuits (>$100M TCV), securing key partnerships with Fortune 500 prospects.</li>
+                            <li data-profiles="strategy">Designed the strategic alliance and integration roadmap for Forge-X with enterprise systems (ServiceNow, Jira, LeanIX, Ardoq), accelerating customer onboarding time-to-value by 50%.</li>
+
+                            <!-- Shared Bullets -->
+                            <li data-profiles="pm">Drove all agile ceremonies (sprint planning, backlog grooming, retros) for the CodeInsightAI team, ensuring continuous delivery and alignment with the product roadmap.</li>
+                            <li data-profiles="pm strategy">Architected a "Transition Viability Scoring Model" (internal tool), enabling 50+ sales members to self-serve and reducing CoE dependency by ~90%.</li>
+                            <li data-profiles="pm marketing strategy">Awarded "Achiever of the Year" for exceptional product leadership, from 0-to-1 MVP delivery to driving GTM strategy for core AI platforms.</li>
+                        </ul>
+                    </div>
+
+                    <div class="card fade-up">
+                        <div class="card-header">
+                            <div class="card-title-group">
+                                <div class="company-name">Accenture</div>
+                                <div class="job-title">Technology Security Associate</div>
+                            </div>
+                            <div class="card-meta-group">
+                                <div class="location">Noida, India</div>
+                                <div class="duration">Aug 21 - Feb 22</div>
+                            </div>
+                        </div>
+                        <ul>
+                            <li data-profiles="pm strategy">Consulted 12+ Senior PMs and Project Leadership with corrective actions to improve contract compliance.</li>
+                            <li data-profiles="pm marketing strategy">Awarded 'Star performer' in Feb 22; Recorded 100% SLA adherence for 5+ assessments on audit reporting.</li>
+                            <li data-profiles="pm">Automated workflow for 2.5k+ employees by utilizing Power BI; mentored 5k+ new global hires on Infosec.</li>
+                            <li data-profiles="marketing">Positioned security audit capabilities and trained 5k+ new global hires on InfoSec compliance workflows.</li>
+                        </ul>
+                    </div>
+
+                    <div class="card fade-up">
+                        <div class="card-header">
+                            <div class="card-title-group">
+                                <div class="company-name">Amazon</div>
+                                <div class="job-title">Quality Specialist</div>
+                            </div>
+                            <div class="card-meta-group">
+                                <div class="location">Delhi, India</div>
+                                <div class="duration">Aug 20 - Aug 21</div>
+                            </div>
+                        </div>
+                        <ul>
+                            <li data-profiles="pm strategy">Improved 500+ routes by performing RCA on DAs deviation; Utilized pattern recognition & navigation tools.</li>
+                            <li data-profiles="pm marketing">Enhanced Customer delivery experience via creating 100+ 'Hyper Zones' through data analysis using QGIS.</li>
+                            <li data-profiles="pm">Improved partial addresses matching algo for 30+ stations in India by correcting 10K+ address data points.</li>
+                        </ul>
+                    </div>
+
+                    <div class="card fade-up">
+                        <div class="card-header">
+                            <div class="card-title-group">
+                                <div class="company-name">Om Softech</div>
+                                <div class="job-title">Associate</div>
+                            </div>
+                            <div class="card-meta-group">
+                                <div class="location">Delhi, India</div>
+                                <div class="duration">Jun 19 - Aug 20</div>
+                            </div>
+                        </div>
+                        <ul>
+                            <li data-profiles="marketing strategy">Incremented sales revenue by ~15% & margins by ~5%; Optimized dead inventory by forecasting demand.</li>
+                            <li data-profiles="marketing">Sold 180K+ worth of AMCs; Persuaded 25+ institute owners by personalized sales and product marketing.</li>
+                            <li data-profiles="pm strategy">Increased delivery efficiency by 20%+ through task prioritization while managing 4 network professionals.</li>
+                        </ul>
+                    </div>
+
+                    <h2 class="section-title fade-up no-print">STRATEGIC PRODUCT & SALES INITIATIVES</h2>
+                    <div class="card fade-up no-print">
+                        <ul>
+                            <li data-profiles="pm">Led Agile Driven Product Management for internal assets.</li>
+                            <li data-profiles="pm marketing">Executed Leadership Vision by defining Product Roadmap & building GTM strategy for IDP.</li>
+                            <li data-profiles="pm">Led Enterprise Products based on Agentic AI with MCP & Context Aware RAG architectures.</li>
+                            <li data-profiles="marketing">Led development for enterprise MVPs with Sales Enablement Materials driving $2M+ potential pipeline value.</li>
+                            <li data-profiles="marketing">Led MVP development for Agentic AI based IDP; Created Strategic Sales Enablement kits.</li>
+                            <li data-profiles="strategy">Drafted Executive Strategy Decks for $500M+ Business Unit; Coordinated $50M+ Cross-Functional sales proposals.</li>
+                            <li data-profiles="marketing strategy">Crafted sales pitch for $20M+ Proposal for App Modernisation; Created assets demo and sales enablement material.</li>
+                            <li data-profiles="marketing strategy">Orchestrated RFI for ISG report, securing competitive placement & influencing ~$5M pipeline growth for the company.</li>
+                            <li data-profiles="strategy">Developed parameterized model for Transition Estimation, reducing errors by ~15% via data-driven logic.</li>
+                        </ul>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- RIGHT COLUMN: Education, Skills, Internships -->
+            <div class="column-sidebar">
+
+                <section>
+                    <h2 class="section-title fade-up">EDUCATION</h2>
+
+                    <div class="card fade-up">
+                        <div class="edu-header">
+                            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3f/IIM_Calcutta_Logo.svg/500px-IIM_Calcutta_Logo.svg.png" alt="IIM Calcutta Logo" class="edu-logo">
+                            <div class="edu-details">
+                                <div class="company-name">IIM Calcutta</div>
+                                <div class="job-title">Master of Business Administration (MBA)</div>
+                                <div class="location">Kolkata, India</div>
+                                <div class="duration">May 22 - Apr 24</div>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Founder & President, JCB (SIG)</li>
+                            <li>Events & Sponsorship Head, GMLC</li>
+                            <li>Junior Sports Council, IIMC</li>
+                            <li>National Semi-Finalist in the JSW Case Competition 23</li>
+                            <li>Awarded 2nd/600+ in Startup Idea pitching Competition(E-Cell)</li>
+                        </ul>
+                    </div>
+
+                    <div class="card fade-up">
+                        <div class="edu-header">
+                            <img src="https://upload.wikimedia.org/wikipedia/en/9/98/Dr._A.P.J._Abdul_Kalam_Technical_University_logo.png" alt="Dr. APJ Abdul Kalam Technical University Logo" class="edu-logo">
+                            <div class="edu-details">
+                                <div class="company-name">IMS Engineering College</div>
+                                <div class="job-title">B.Tech, Computer Science & Engineering</div>
+                                <div class="location">Ghaziabad, India</div>
+                                <div class="duration">Jun 15 - May 19</div>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Sports Convener, National Level Sports Fest</li>
+                            <li>Basketball Captain, College Team</li>
+                            <li>Tech Fest Winner, CSE Dept.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="section-title fade-up">SKILLS & INTERESTS</h2>
+                    <div class="card fade-up">
+                        <p style="color:var(--accent); font-weight:600; margin-bottom:0.5rem;">Technical Skills</p>
+                        <div class="skills-container" style="margin-bottom: 1.5rem;">
+                            <!-- AI PM Skills -->
+                            <span class="skill-tag" data-profiles="pm">Product Lifecycle Management</span>
+                            <span class="skill-tag" data-profiles="pm">Agile/Scrum & Roadmapping</span>
+                            <span class="skill-tag" data-profiles="pm">Wire-framing & Figma</span>
+                            <span class="skill-tag" data-profiles="pm">Agentic AI & LLMs</span>
+                            <span class="skill-tag" data-profiles="pm">MCP & Context-Aware RAG</span>
+                            <span class="skill-tag" data-profiles="pm marketing strategy">Stakeholder Management</span>
+                            <span class="skill-tag" data-profiles="pm marketing strategy">Vibe Coding</span>
+
+                            <!-- Marketing Skills -->
+                            <span class="skill-tag" data-profiles="marketing">GTM Strategy & Launch</span>
+                            <span class="skill-tag" data-profiles="marketing">Product Positioning</span>
+                            <span class="skill-tag" data-profiles="marketing">B2B Sales Enablement</span>
+                            <span class="skill-tag" data-profiles="marketing">Analyst Relations (ISG/Forrester)</span>
+                            <span class="skill-tag" data-profiles="marketing">Solution Selling</span>
+                            <span class="skill-tag" data-profiles="marketing strategy">Executive Communication</span>
+                            <span class="skill-tag" data-profiles="marketing strategy">Business Storytelling</span>
+
+                            <!-- Strategy Skills -->
+                            <span class="skill-tag" data-profiles="strategy">Business Strategy & ROI</span>
+                            <span class="skill-tag" data-profiles="strategy">Alliance & Partner Roadmaps</span>
+                            <span class="skill-tag" data-profiles="strategy">Financial Parameterized Models</span>
+                            <span class="skill-tag" data-profiles="strategy">Large-scale Sales Pursuits</span>
+                            <span class="skill-tag" data-profiles="strategy">Value Realization Frameworks</span>
+                        </div>
+
+                        <p class="no-print" style="color:var(--accent); font-weight:600; margin-bottom:0.5rem;">Interests</p>
+                        <div class="skills-container no-print" style="margin-bottom: 1.5rem;">
+                            <span class="skill-tag">AGI</span>
+                            <span class="skill-tag">Agentic AI</span>
+                            <span class="skill-tag">UI Design</span>
+                            <span class="skill-tag">Startup Ecosystem</span>
+                            <span class="skill-tag">Quantum Computing</span>
+                            <span class="skill-tag">Consumer Behavior</span>
+                            <span class="skill-tag basketball-tag">Basketball</span>
+                        </div>
+
+                        <p class="no-print" style="color:var(--accent); font-weight:600; margin-bottom:0.5rem;">Languages</p>
+                        <p class="no-print" style="margin-bottom: 1.5rem;">English, Hindi</p>
+
+                        <p style="color:var(--accent); font-weight:600; margin-bottom:0.5rem;">Awards/Achievements</p>
+                        <ul style="font-size: 0.85rem;">
+                            <li>Award of Excellence for FY25' (Coforge)</li>
+                            <li>SPOT Award from COO (Coforge, 24)</li>
+                            <li>LOR from GM Sourcing (Mahindra, 23)</li>
+                            <li>Emerging Player of the Year (IIMC Basketball, 23)</li>
+                            <li>Star Performer of the Month (Accenture, 2022)</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <section>
+            <h2 class="section-title fade-up">INTERNSHIPS & LEADERSHIP</h2>
+            <div class="cards-scroll-container">
+                <div class="card fade-up">
+                    <div class="card-header">
+                        <div class="card-title-group">
+                            <div class="company-name">MAHINDRA & MAHINDRA LTD.</div>
+                            <div class="job-title" style="font-size:1.1rem;">GMC Summer Intern</div>
+                        </div>
+                        <div class="card-meta-group">
+                            <div class="location">Mumbai, India</div>
+                            <div class="duration">Apr 23 - Jun 23</div>
+                        </div>
+                    </div>
+                    <ul>
+                        <li>Awarded LOR from GM (Sourcing); Identified ~5% complexity reduction opportunities for ₹22000 cr. spend</li>
+                        <li>Identified potential capex saving of $2Mn+ through part commonization; Analyzed 44k+ automotive parts</li>
+                        <li>Created responsive dashboard for analyzing 500+ variant; Verified product outcome for CXO level reviews</li>
+                    </ul>
+                </div>
+
+                <div class="card fade-up">
+                    <div class="card-header">
+                        <div class="card-title-group">
+                            <div class="company-name">Volopay (YC 20')</div>
+                            <div class="job-title" style="font-size:1.1rem;">Security Intern</div>
+                        </div>
+                        <div class="card-meta-group">
+                            <div class="location">Bangalore, India</div>
+                            <div class="duration">2022</div>
+                        </div>
+                    </div>
+                    <ul>
+                        <li>Received full-time offer from 'Volopay' for exceptional performance; Awarded stellar LOR from CTO</li>
+                    </ul>
+                </div>
+
+                <div class="card fade-up">
+                    <div class="card-header">
+                        <div class="card-title-group">
+                            <div class="company-name">Joka Comedy Board, IIMC</div>
+                            <div class="job-title" style="font-size:1.1rem;">Founding President</div>
+                        </div>
+                        <div class="card-meta-group">
+                            <div class="location">Kolkata, India</div>
+                            <div class="duration">2023 - 2024</div>
+                        </div>
+                    </div>
+                    <ul>
+                        <li>Founded SIG through 2-tiered inception process; Spearheaded 35+ member team across 3 verticals</li>
+                        <li>Organically scaled the Instagram account to 61k+ impressions, 16k+ reach & 5k+ interactions in the last 90 days</li>
+                        <li>Envisioned 3 events, received 300+ participation from 35+ colleges; Raised sponsorship worth ₹25K</li>
+                    </ul>
+                </div>
+
+                <div class="card fade-up">
+                    <div class="card-header">
+                        <div class="card-title-group">
+                            <div class="company-name">General Management and Leadership Club, IIMC</div>
+                            <div class="job-title" style="font-size:1.1rem;">Events & Sponsorship Head</div>
+                        </div>
+                        <div class="card-meta-group">
+                            <div class="location">Kolkata, India</div>
+                            <div class="duration">2023 - 2024</div>
+                        </div>
+                    </div>
+                    <ul>
+                        <li>Strategized 2 National Level case competitions with 69k+ impressions, 1500+ registrations from 150+ institutes</li>
+                        <li>Spearheaded a 20+ member team; Orchestrated 4+ mentorship & preparation sessions for 1100+ attendees</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- JavaScript for scroll animations & Theme Toggle -->
+    <script>
+        // Profile Switcher functions in global scope
+        function setProfile(profile) {
+            document.body.classList.remove('profile-pm', 'profile-marketing', 'profile-strategy');
+            document.body.classList.add('profile-' + profile);
+            
+            // Update active state in toggle buttons
+            document.querySelectorAll('.profile-tab').forEach(tab => {
+                tab.classList.toggle('active', tab.dataset.profile === profile);
+            });
+            
+            localStorage.setItem('profile', profile);
+        }
+
+        function downloadPDF(profile) {
+            setProfile(profile);
+            setTimeout(() => {
+                window.print();
+            }, 300);
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            // Restore saved profile or default to PM
+            const savedProfile = localStorage.getItem('profile') || 'pm';
+            setProfile(savedProfile);
+            // Theme Toggle Initialization
+            const themeToggle = document.createElement('button');
+            themeToggle.className = 'theme-toggle';
+            themeToggle.setAttribute('aria-label', 'Toggle theme');
+            themeToggle.innerHTML = `
+                <svg class="sun-icon" viewBox="0 0 24 24" style="display: none;">
+                    <path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0-2c.55 0 1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1v2c0 .55.45 1 1 1zm0 14c-.55 0-1 .45-1 1v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41s-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.01c.39-.39.39-1.03 0-1.41s-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM23 11h-2c-.55 0-1 .45-1 1s.45 1 1 1h2c.55 0 1-.45 1-1s-.45-1-1-1zM4 12c0-.55-.45-1-1-1H1c-.55 0-1 .45-1 1s.45 1 1 1h2c.55 0 1-.45 1-1z"/>
+                </svg>
+                <svg class="moon-icon" viewBox="0 0 24 24">
+                    <path d="M12.3 22h-.1c-5.5 0-10-4.5-10-10 0-4.7 3.3-8.8 8-9.8.7-.1 1.4.3 1.6 1 .2.7-.1 1.4-.7 1.8-3.4 2.2-4.6 6.8-2.6 10.3 1.9 3.5 6.1 5.2 9.8 3.8.6-.2 1.3 0 1.7.5.4.5.4 1.2.1 1.7-1.9 2.8-5 4.7-8.8 4.7z"/>
+                </svg>
+            `;
+            document.body.appendChild(themeToggle);
+
+            const sunIcon = themeToggle.querySelector('.sun-icon');
+            const moonIcon = themeToggle.querySelector('.moon-icon');
+
+            function updateThemeIcons(isLight) {
+                if (isLight) {
+                    sunIcon.style.display = 'block';
+                    moonIcon.style.display = 'none';
+                } else {
+                    sunIcon.style.display = 'none';
+                    moonIcon.style.display = 'block';
+                }
+            }
+
+            const savedTheme = localStorage.getItem('theme');
+            const userPrefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+            
+            let isLightMode = savedTheme === 'light' || (!savedTheme && userPrefersLight);
+            if (isLightMode) {
+                document.body.classList.add('light-mode');
+                updateThemeIcons(true);
+            }
+
+            themeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('light-mode');
+                const currentIsLight = document.body.classList.contains('light-mode');
+                localStorage.setItem('theme', currentIsLight ? 'light' : 'dark');
+                updateThemeIcons(currentIsLight);
+            });
+
+            // Dynamically create full-screen fill overlay
+            const overlay = document.createElement('div');
+            overlay.className = 'fill-overlay';
+            document.body.appendChild(overlay);
+
+            // Section Hover Easter Egg & Auto-Scroll Logic
+            let hasTriggeredShake = false;
+
+            const sections = document.querySelectorAll('section');
+            sections.forEach(sec => {
+                let hoverTimeout;
+                let shakeStopTimeout;
+                let scrollInterval;
+                
+                const scrollContainer = sec.querySelector('.cards-scroll-container');
+                
+                sec.addEventListener('mouseenter', () => {
+                    sec.classList.add('grow-active');
+                    
+                    if (scrollContainer) {
+                        // Internships & Leadership Section: Auto-scroll on bar fill
+                        const cards = scrollContainer.querySelectorAll('.card');
+                        const cardGap = 24; // 1.5rem gap
+                        
+                        const triggerScroll = () => {
+                            if (cards.length === 0) return;
+                            const cardWidth = cards[0].offsetWidth + cardGap;
+                            
+                            // Calculate next scroll index
+                            let currentIndex = Math.round(scrollContainer.scrollLeft / cardWidth);
+                            let nextIndex = currentIndex + 1;
+                            
+                            // Check if the next slide exceeds the maximum scrollable limit
+                            const maxScrollLeft = scrollContainer.scrollWidth - scrollContainer.clientWidth;
+                            if (nextIndex * cardWidth > maxScrollLeft + 5 || nextIndex >= cards.length) {
+                                nextIndex = 0; // Endless wrap-around
+                            }
+                            
+                            // 1. Trigger smooth scroll to the next tile
+                            scrollContainer.scrollTo({
+                                left: nextIndex * cardWidth,
+                                behavior: 'smooth'
+                            });
+                            
+                            // 2. Wait for the smooth scroll transition to finish (e.g., 600ms)
+                            scrollInterval = setTimeout(() => {
+                                // Reset the grow bar to 0 and let it start growing again
+                                sec.classList.remove('grow-active');
+                                void sec.offsetWidth; // Force DOM reflow
+                                sec.classList.add('grow-active');
+                                
+                                // 3. Schedule the next scroll for when the bar finishes growing (1500ms)
+                                scrollInterval = setTimeout(triggerScroll, 1500);
+                            }, 600);
+                        };
+                        
+                        // Set up the first scroll trigger for when the bar initially finishes growing
+                        scrollInterval = setTimeout(triggerScroll, 1500);
+                    } else if (!hasTriggeredShake) {
+                        // Standard Section: Shake and Fill on bar fill (only ONCE per page load)
+                        hoverTimeout = setTimeout(() => {
+                            hasTriggeredShake = true;
+                            document.body.classList.add('shake-active');
+                            sec.classList.add('fill-active');
+                            
+                            // Stop shake and fill after 1 second even if user stays hovered
+                            shakeStopTimeout = setTimeout(() => {
+                                document.body.classList.remove('shake-active');
+                                sec.classList.remove('fill-active');
+                            }, 1000);
+                        }, 1500);
+                    }
+                });
+
+                sec.addEventListener('mouseleave', () => {
+                    sec.classList.remove('grow-active');
+                    sec.classList.remove('fill-active');
+                    document.body.classList.remove('shake-active');
+                    
+                    clearTimeout(hoverTimeout);
+                    clearTimeout(shakeStopTimeout);
+                    clearTimeout(scrollInterval);
+                });
+            });
+
+            // Intersection Observer for scroll animations
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const fadeUpElements = document.querySelectorAll('.fade-up');
+            fadeUpElements.forEach((el, index) => {
+                el.style.transitionDelay = `${index * 0.05}s`;
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+
+</html>
